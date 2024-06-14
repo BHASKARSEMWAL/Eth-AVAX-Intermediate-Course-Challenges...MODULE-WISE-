@@ -1,0 +1,38 @@
+//SPDX-License-Identifier:MIT
+
+Challenge Question:-> write a smart contract that uses view, pure, and payable functions. Ensure that the functions are accessible within the contract and derived contracts as well.
+
+pragma solidity >=0.8.26;
+
+contract Challenge_2{
+    uint public x;
+    constructor(uint val){
+        x=val;
+    }
+
+    function VIEW() public view virtual returns(uint){
+        return x;
+    }
+    function PURE(uint a,uint b) public pure virtual returns(uint){
+        return a+b;
+    }
+    function PAYABLE() public payable virtual {
+        x+=msg.value;
+    }
+}
+
+contract Derived_contract is Challenge_2{
+    constructor(uint val) Challenge_2(val){}
+
+    function VIEW() public view override returns(uint){
+        return x*2;
+    }
+    function PURE(uint a,uint b) public pure override returns(uint){
+        return a+b+10;
+    }
+    function PAYABLE() public payable override {
+        x+=msg.value*10;
+    }
+
+
+}
