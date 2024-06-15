@@ -1,0 +1,24 @@
+//SPDX-License-Identifier:MIT
+
+// Challenge's Question:-> Write a smart contract that defines and triggers 3-4 events, Index the events so that they can be easily searched
+
+pragma solidity ^0.8.26;
+
+contract Event{
+    event Balance(address indexed account,string message, uint Amt);
+    event Info(address indexed ofc_add,string name,uint age);
+    event Family_info(address indexed house_add,string statement, uint members);
+
+    function balance() public{
+        emit Balance(msg.sender, "You have an Amount of: ", 10000);
+    }
+
+    function info() public{
+        emit Info(msg.sender, "Ramesh", 40);
+    }
+
+    function family_info() public{
+        emit Family_info(msg.sender,"NO. of family Members:", 5);
+    }
+
+}
